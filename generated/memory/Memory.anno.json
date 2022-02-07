@@ -1,0 +1,32 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.annotations.LoadMemoryAnnotation",
+    "target":"Memory.Memory.Ram",
+    "fileName":"./src/main/scala/memory/mem_data.txt",
+    "hexOrBinary":"h",
+    "originalMemoryNameOpt":"Ram"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"./generated/memory"
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Memory|Memory>io_rdData",
+    "sources":[
+      "~Memory|Memory>io_ren",
+      "~Memory|Memory>io_rlength",
+      "~Memory|Memory>io_rdAddr"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxInlineAnno",
+    "target":"Memory.Memory",
+    "name":"Memory.Memory.Ram.v",
+    "text":"module BindsTo_0_Memory(\n  input         clock,\n  input         reset,\n  input         io_ren,\n  input  [3:0]  io_rlength,\n  input  [3:0]  io_rdAddr,\n  output [31:0] io_rdData\n);\n\ninitial begin\n  $readmemh(\"./src/main/scala/memory/mem_data.txt\", Memory.Ram);\nend\n                      endmodule\n\nbind Memory BindsTo_0_Memory BindsTo_0_Memory_Inst(.*);"
+  }
+]
